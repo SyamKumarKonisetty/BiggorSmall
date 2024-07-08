@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big or Small?</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  #userInput {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+
+  .result {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #3498db;  /* Adjust result text color as desired */
+  }
+
+  .fancy-btn {
+    background-color: #3498db; /* Blue base color */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .fancy-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">Big or Small?</div>
+    <p>Enter a three-digit number :</p>
+    <input type="number" id="userInput" min="000" max="999" required>  <br><br>
+    <button class="fancy-btn" onclick="generateResult()">Generate Result</button>
+    <br><br>
+    <p class="result" id="result"></p>
+    <script>
+      function generateResult() {
+        const userInput = document.getElementById("userInput").value;
+
+        // Validate user input (optional, but recommended)
+        if (isNaN(userInput) || userInput.length !== 3) {
+          alert("Please enter a valid three-digit number (000-999).");
+          return; // Exit the function if input is invalid
+        }
+
+        const number = parseInt(userInput);  // Convert user input to number
+        const randomNumber = getRandom(0, 9);
+
+        let result;
+        if (number < 5) {
+          result = "Small";
+        } else {
+          result = "Big";
+        }
+
+        const output = `Your number: ${number} <br> Random number: ${randomNumber} <br> Result: ${result}`;
+        document.getElementById("result").innerHTML = output;
+      }
+
+      function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+    </script>
+  </div>
+</body>
+</html>
